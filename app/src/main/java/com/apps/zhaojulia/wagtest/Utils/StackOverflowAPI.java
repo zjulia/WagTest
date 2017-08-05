@@ -1,10 +1,10 @@
-package com.apps.zhaojulia.wagtest;
+package com.apps.zhaojulia.wagtest.Utils;
 
-import java.util.List;
+import com.apps.zhaojulia.wagtest.Model.User;
+import com.apps.zhaojulia.wagtest.Utils.ListWrapper;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
-import retrofit2.http.Query;
 
 /**
  * Created by admin on 8/5/17.

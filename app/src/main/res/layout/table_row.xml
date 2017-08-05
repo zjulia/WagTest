@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableRow xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/row_height">
+
+    <!-- Gravatar -->
+    <ImageView
+        android:padding="@dimen/general_padding"
+        android:layout_width="@dimen/image_square"
+        android:layout_height="@dimen/image_square"
+        android:src="@mipmap/ic_launcher"
+        />
+
+    <LinearLayout
+        android:padding="@dimen/general_padding"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <!-- Username -->
+        <TextView
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+            android:id="@+id/username_box"
+            android:textStyle="bold"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Username"/>
+
+
+        <!-- Badges -->
+        <LinearLayout
+            android:paddingTop="@dimen/general_padding"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <!-- Bronze -->
+            <TextView
+                android:drawableTint="@color/bronze_badge"
+                android:drawableLeft="@drawable/badge_icon"
+                android:textColor="@color/bronze"
+                android:id="@+id/bronze_bodges"
+                android:gravity="center"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="bronze"/>
+
+            <!-- Silver -->
+            <TextView
+                android:drawableTint="@color/silver_badge"
+                android:drawableLeft="@drawable/badge_icon"
+                android:gravity="center"
+                android:textColor="@color/silver"
+                android:id="@+id/silver_bodges"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="silver"/>
+
+            <!-- Gold -->
+            <TextView
+                android:drawableTint="@color/gold_badge"
+                android:drawableLeft="@drawable/badge_icon"
+                android:gravity="center"
+                android:textColor="@color/gold"
+                android:id="@+id/gold_bodges"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="gold"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</TableRow>

@@ -1,4 +1,4 @@
-package com.apps.zhaojulia.wagtest;
+package com.apps.zhaojulia.wagtest.Model;
 
 import com.google.gson.annotations.SerializedName;
 

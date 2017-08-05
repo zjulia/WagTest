@@ -3,4 +3,14 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+
+    <!-- Badge's text colors -->
+    <color name="bronze">#c38b5f</color>
+    <color name="silver">#8c9298</color>
+    <color name="gold">#cda400</color>
+
+    <!-- Badge Colors-->
+    <color name="gold_badge">#FFCC01</color>
+    <color name="silver_badge">#B4B8BC</color>
+    <color name="bronze_badge">#D1A684</color>
 </resources>

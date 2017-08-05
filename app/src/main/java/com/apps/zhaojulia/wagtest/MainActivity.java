@@ -5,8 +5,13 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.ArrayAdapter;
 
+import com.apps.zhaojulia.wagtest.Model.User;
+import com.apps.zhaojulia.wagtest.Utils.ListWrapper;
+import com.apps.zhaojulia.wagtest.Utils.StackOverflowAPI;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -23,11 +28,11 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        createStackoverflowAPI();
+        createStackOverflowAPI();
         stackoverflowAPI.getUsers().enqueue(usersCallback);
     }
 
-    private void createStackoverflowAPI() {
+    private void createStackOverflowAPI() {
         Gson gson = new GsonBuilder()
                 .setDateFormat("yyyy-MM-dd'T'HH:mm:ssZ")
                 .create();
@@ -46,8 +51,9 @@ public class MainActivity extends AppCompatActivity {
         public void onResponse(Call<ListWrapper<User>> call, Response<ListWrapper<User>> response) {
             if (response.isSuccessful()) {
                 ListWrapper<User> usersListWrapper = response.body();
-                ArrayAdapter<User> arrayAdapter = new ArrayAdapter<User>(MainActivity.this,
-                        android.R.layout.simple_spinner_dropdown_item, usersListWrapper.items);
+                displayUsers(usersListWrapper.getItems());
+//                ArrayAdapter<User> arrayAdapter = new ArrayAdapter<User>(MainActivity.this,
+//                        android.R.layout.simple_spinner_dropdown_item, usersListWrapper.getItems());
                 //questionsSpinner.setAdapter(arrayAdapter);
             } else {
                 Log.d("UsersCallback", "Code: " + response.code() + " Message: " + response.message());
@@ -59,5 +65,13 @@ public class MainActivity extends AppCompatActivity {
             t.printStackTrace();
         }
     };
+
+    /**
+     * Inflates the table row view and populates accordingly
+     * @param users list of users
+     */
+    private void displayUsers(List<User> users) {
+
+    }
 
 }
