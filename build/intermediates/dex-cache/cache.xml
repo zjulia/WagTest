@@ -12,6 +12,15 @@
     </item>
     <item
         is-multidex="true"
+        jar="/Users/admin/.gradle/caches/modules-2/files-2.1/com.github.bumptech.glide/gifdecoder/4.0.0/47c487cc4e64e6ab127a517669ca9a7b49f8c61d/gifdecoder-4.0.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="47c487cc4e64e6ab127a517669ca9a7b49f8c61d">
+        <dex dex="/Users/admin/Documents/Android/Wag/WagTest/WagTest/app/build/intermediates/transforms/dex/debug/folders/1000/10/gifdecoder-4.0.0_e2921f48d52b1ebd9c178d8fe009125ac8bfe681/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
         jar="/Users/admin/Documents/Android/Wag/WagTest/WagTest/app/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
         jumboMode="true"
         optimize="true"
@@ -39,12 +48,39 @@
     </item>
     <item
         is-multidex="true"
+        jar="/Users/admin/.gradle/caches/modules-2/files-2.1/com.github.bumptech.glide/glide/4.0.0/dff931af436f0a2815d0109ab2258bbce2d6275d/glide-4.0.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="dff931af436f0a2815d0109ab2258bbce2d6275d">
+        <dex dex="/Users/admin/Documents/Android/Wag/WagTest/WagTest/app/build/intermediates/transforms/dex/debug/folders/1000/10/glide-4.0.0_b820e7431949b11273c47c06937e3caa2d582933/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
         jar="/Users/admin/.gradle/caches/modules-2/files-2.1/com.squareup.retrofit2/converter-gson/2.1.0/aa557d71ead91cbf26e0c316a0f593d168303309/converter-gson-2.1.0.jar"
         jumboMode="true"
         optimize="true"
         revision="25.0.2"
         sha1="aa557d71ead91cbf26e0c316a0f593d168303309">
         <dex dex="/Users/admin/Documents/Android/Wag/WagTest/WagTest/app/build/intermediates/transforms/dex/debug/folders/1000/10/converter-gson-2.1.0_8df5090a41878132a678c39f9ecc62bb4498d81e/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/admin/.gradle/caches/modules-2/files-2.1/com.github.bumptech.glide/disklrucache/4.0.0/d88059003509074dd59fa226c822724bcf5ec0ca/disklrucache-4.0.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="d88059003509074dd59fa226c822724bcf5ec0ca">
+        <dex dex="/Users/admin/Documents/Android/Wag/WagTest/WagTest/app/build/intermediates/transforms/dex/debug/folders/1000/10/disklrucache-4.0.0_8cbe94789ecf2e3ed0319e8f5958f62f24e15676/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/admin/.gradle/caches/modules-2/files-2.1/com.github.bumptech.glide/annotations/4.0.0/f80192e6fd828d41c7da6f3552b0bef5d89cb26e/annotations-4.0.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="f80192e6fd828d41c7da6f3552b0bef5d89cb26e">
+        <dex dex="/Users/admin/Documents/Android/Wag/WagTest/WagTest/app/build/intermediates/transforms/dex/debug/folders/1000/10/annotations-4.0.0_93022d4bda03d2e5b55648a6aa64268dba09623c/classes.dex" />
     </item>
     <item
         is-multidex="true"

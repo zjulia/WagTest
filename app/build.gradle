@@ -31,4 +31,12 @@ dependencies {
     // It makes it relatively easy to retrieve and upload JSON 
     compile 'com.squareup.retrofit2:retrofit:2.1.0'
     compile 'com.squareup.retrofit2:converter-gson:2.1.0'
+
+    // Glide abstracts out most of the complexity in handling these and other
+    // tasks related to working with bitmaps and other images on Android.
+    // Considered picasso but didn't use it for these reasons:
+    // https://medium.com/@multidots/glide-vs-picasso-930eed42b81d
+    compile 'com.github.bumptech.glide:glide:4.0.0'
+    compile 'com.android.support:support-v4:25.3.1'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.0.0'
 }

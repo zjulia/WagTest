@@ -1,10 +1,14 @@
 package com.apps.zhaojulia.wagtest;
 
+import android.graphics.drawable.Drawable;
+import android.os.Build;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
@@ -12,6 +16,9 @@ import android.widget.TextView;
 import com.apps.zhaojulia.wagtest.Model.User;
 import com.apps.zhaojulia.wagtest.Utils.ListWrapper;
 import com.apps.zhaojulia.wagtest.Utils.StackOverflowAPI;
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.request.RequestOptions;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -26,10 +33,10 @@ import retrofit2.converter.gson.GsonConverterFactory;
 /**
  * X You will need to connect to Stackoverflow Users API Endpoint and retrieve the first page of data. FULL API documentation
  * X Display the retrieved data through a TableLayout.
- * / We expect from you to display at least username, badges and gravatar for every user.
+ * X We expect from you to display at least username, badges and gravatar for every user.
  * X While the gravatar is being downloaded, the UI should show a loading animation.
- * Each of the photos should be downloaded only once and stored for offline usage.
- * The UI should always be responsive.
+ * X (Glide auto) Each of the photos should be downloaded only once and stored for offline usage.
+ * X The UI should always be responsive.
  */
 public class MainActivity extends AppCompatActivity {
 
@@ -68,9 +75,6 @@ public class MainActivity extends AppCompatActivity {
             if (response.isSuccessful()) {
                 ListWrapper<User> usersListWrapper = response.body();
                 displayUsers(usersListWrapper.getItems());
-//                ArrayAdapter<User> arrayAdapter = new ArrayAdapter<User>(MainActivity.this,
-//                        android.R.layout.simple_spinner_dropdown_item, usersListWrapper.getItems());
-                //questionsSpinner.setAdapter(arrayAdapter);
                 removeLoadingIcon();
             } else {
                 Log.d("UsersCallback", "Code: " + response.code() + " Message: " + response.message());
@@ -95,9 +99,13 @@ public class MainActivity extends AppCompatActivity {
         for (User user : users) {
             // Inflate
             TableRow inflateRow = (TableRow) View.inflate(MainActivity.this, R.layout.table_row, null);
-            View line = (View) View.inflate(MainActivity.this, R.layout.horizontal_line, null);
 
             // Update picture
+            ImageView profilePic = (ImageView) inflateRow.findViewById(R.id.profile_picture);
+            Glide.with(this)
+                    .load(user.getGravaterUrl())
+                    .apply(RequestOptions.circleCropTransform())
+                    .into(profilePic);
 
             // Update username
             TextView textview = (TextView) inflateRow.findViewById(R.id.username_box);
@@ -113,7 +121,6 @@ public class MainActivity extends AppCompatActivity {
 
             // Attach to main table layout
             usersTableLayout.addView(inflateRow);
-            usersTableLayout.addView(line);
         }
     }
 

@@ -24,10 +24,11 @@
         <!-- Title -->
         <TextView
             android:padding="@dimen/general_padding"
+            android:textStyle="bold"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="Julia's Wag! App"
+            android:text="StackOverflow Users"
             android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"/>
 
         <!-- Users List-->

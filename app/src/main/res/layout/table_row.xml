@@ -6,10 +6,10 @@
 
     <!-- Gravatar -->
     <ImageView
+        android:id="@+id/profile_picture"
         android:padding="@dimen/general_padding"
         android:layout_width="@dimen/image_square"
         android:layout_height="@dimen/image_square"
-        android:src="@mipmap/ic_launcher"
         />
 
     <LinearLayout
