@@ -1,41 +1,50 @@
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
+<!-- Loading Animation -->
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.apps.zhaojulia.wagtest.MainActivity"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.apps.zhaojulia.wagtest.MainActivity">
+    android:gravity="center" >
 
-    <TextView
-        android:padding="@dimen/general_padding"
+    <!-- Loading Bar -->
+    <ProgressBar
+        android:id="@+id/loadingPanel"
+        android:padding="@dimen/row_height"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="Wag! StackOverflow"
-        android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"/>
+        android:layout_height="match_parent"
+        android:indeterminate="true" />
 
-    <ScrollView
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-        <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+        <!-- Title -->
+        <TextView
+            android:padding="@dimen/general_padding"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/table_layout"
-            android:stretchColumns="1">
-            <!-- Table Rows go Here-->
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Julia's Wag! App"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"/>
 
-            <TableRow><TextView android:padding="@dimen/image_square" android:text="sdfsdfsdfsdf"/></TableRow>
-            <TableRow><TextView android:padding="@dimen/image_square" android:text="sdfsdfsdfsdf"/></TableRow>
-            <TableRow><TextView android:padding="@dimen/image_square" android:text="sdfsdfsdfsdf"/></TableRow>
-            <TableRow><TextView android:padding="@dimen/image_square" android:text="sdfsdfsdfsdf"/></TableRow>
-            <TableRow><TextView android:padding="@dimen/image_square" android:text="sdfsdfsdfsdf"/></TableRow>
-            <TableRow><TextView android:padding="@dimen/image_square" android:text="sdfsdfsdfsdf"/></TableRow>
-            <TableRow><TextView android:padding="@dimen/image_square" android:text="sdfsdfsdfsdf"/></TableRow>
-            <TableRow><TextView android:padding="@dimen/image_square" android:text="sdfsdfsdfsdf"/></TableRow>
-            <TableRow><TextView android:padding="@dimen/image_square" android:text="sdfsdfsdfsdf"/></TableRow>
-            <TableRow><TextView android:padding="@dimen/image_square" android:text="sdfsdfsdfsdf"/></TableRow>
-        </TableLayout>
-    </ScrollView>
+        <!-- Users List-->
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/table_layout"
+                android:stretchColumns="1">
+                <!-- Table Rows go Here-->
 
-</LinearLayout>
+            </TableLayout>
+        </ScrollView>
+
+
+    </LinearLayout>
+
+</RelativeLayout>

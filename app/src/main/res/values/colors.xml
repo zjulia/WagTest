@@ -13,4 +13,5 @@
     <color name="gold_badge">#FFCC01</color>
     <color name="silver_badge">#B4B8BC</color>
     <color name="bronze_badge">#D1A684</color>
+    <color name="horizontal_line">#f5f5f5</color>
 </resources>

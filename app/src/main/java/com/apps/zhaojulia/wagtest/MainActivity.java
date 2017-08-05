@@ -3,7 +3,11 @@ package com.apps.zhaojulia.wagtest;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.TableLayout;
+import android.widget.TableRow;
+import android.widget.TextView;
 
 import com.apps.zhaojulia.wagtest.Model.User;
 import com.apps.zhaojulia.wagtest.Utils.ListWrapper;
@@ -19,14 +23,26 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
+/**
+ * X You will need to connect to Stackoverflow Users API Endpoint and retrieve the first page of data. FULL API documentation
+ * X Display the retrieved data through a TableLayout.
+ * / We expect from you to display at least username, badges and gravatar for every user.
+ * X While the gravatar is being downloaded, the UI should show a loading animation.
+ * Each of the photos should be downloaded only once and stored for offline usage.
+ * The UI should always be responsive.
+ */
 public class MainActivity extends AppCompatActivity {
+
     private StackOverflowAPI stackoverflowAPI;
+    private TableLayout usersTableLayout;
     
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        usersTableLayout = (TableLayout) findViewById(R.id.table_layout);
 
         createStackOverflowAPI();
         stackoverflowAPI.getUsers().enqueue(usersCallback);
@@ -55,6 +71,7 @@ public class MainActivity extends AppCompatActivity {
 //                ArrayAdapter<User> arrayAdapter = new ArrayAdapter<User>(MainActivity.this,
 //                        android.R.layout.simple_spinner_dropdown_item, usersListWrapper.getItems());
                 //questionsSpinner.setAdapter(arrayAdapter);
+                removeLoadingIcon();
             } else {
                 Log.d("UsersCallback", "Code: " + response.code() + " Message: " + response.message());
             }
@@ -66,12 +83,38 @@ public class MainActivity extends AppCompatActivity {
         }
     };
 
+    private void removeLoadingIcon() {
+        findViewById(R.id.loadingPanel).setVisibility(View.GONE);
+    }
+
     /**
      * Inflates the table row view and populates accordingly
      * @param users list of users
      */
     private void displayUsers(List<User> users) {
+        for (User user : users) {
+            // Inflate
+            TableRow inflateRow = (TableRow) View.inflate(MainActivity.this, R.layout.table_row, null);
+            View line = (View) View.inflate(MainActivity.this, R.layout.horizontal_line, null);
 
+            // Update picture
+
+            // Update username
+            TextView textview = (TextView) inflateRow.findViewById(R.id.username_box);
+            textview.setText(user.getUsername());
+
+            // Update badges
+            TextView bronze = (TextView) inflateRow.findViewById(R.id.bronze_badges);
+            bronze.setText(user.getBadgeCount(User.Badge.BRONZE));
+            TextView silver = (TextView) inflateRow.findViewById(R.id.silver_badges);
+            silver.setText(user.getBadgeCount(User.Badge.SILVER));
+            TextView gold = (TextView) inflateRow.findViewById(R.id.gold_badges);
+            gold.setText(user.getBadgeCount(User.Badge.GOLD));
+
+            // Attach to main table layout
+            usersTableLayout.addView(inflateRow);
+            usersTableLayout.addView(line);
+        }
     }
 
 }

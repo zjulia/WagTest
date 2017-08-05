@@ -3,6 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="@dimen/row_height">
 
+
     <!-- Gravatar -->
     <ImageView
         android:padding="@dimen/general_padding"
@@ -39,7 +40,7 @@
                 android:drawableTint="@color/bronze_badge"
                 android:drawableLeft="@drawable/badge_icon"
                 android:textColor="@color/bronze"
-                android:id="@+id/bronze_bodges"
+                android:id="@+id/bronze_badges"
                 android:gravity="center"
                 android:layout_weight="1"
                 android:layout_width="0dp"
@@ -52,7 +53,7 @@
                 android:drawableLeft="@drawable/badge_icon"
                 android:gravity="center"
                 android:textColor="@color/silver"
-                android:id="@+id/silver_bodges"
+                android:id="@+id/silver_badges"
                 android:layout_weight="1"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -64,13 +65,14 @@
                 android:drawableLeft="@drawable/badge_icon"
                 android:gravity="center"
                 android:textColor="@color/gold"
-                android:id="@+id/gold_bodges"
+                android:id="@+id/gold_badges"
                 android:layout_weight="1"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="gold"/>
 
         </LinearLayout>
+
 
     </LinearLayout>
 
