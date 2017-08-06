@@ -1,7 +1,9 @@
 package com.apps.zhaojulia.wagtest;
 
+import android.graphics.drawable.AnimationDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
+import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -9,6 +11,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
@@ -17,8 +21,12 @@ import com.apps.zhaojulia.wagtest.Model.User;
 import com.apps.zhaojulia.wagtest.Utils.ListWrapper;
 import com.apps.zhaojulia.wagtest.Utils.StackOverflowAPI;
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.DataSource;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.load.engine.GlideException;
+import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.RequestOptions;
+import com.bumptech.glide.request.target.Target;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -42,6 +50,10 @@ public class MainActivity extends AppCompatActivity {
 
     private StackOverflowAPI stackoverflowAPI;
     private TableLayout usersTableLayout;
+    private LinearLayout splashScreen;
+
+    private boolean showLoading = false; // Make it true if you want to see the loading icon instead
+    // The profile pictures load too quickly to be able to see the loading animation sometimes
     
 
     @Override
@@ -50,6 +62,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         usersTableLayout = (TableLayout) findViewById(R.id.table_layout);
+        splashScreen = (LinearLayout) findViewById(R.id.splash);
 
         createStackOverflowAPI();
         stackoverflowAPI.getUsers().enqueue(usersCallback);
@@ -80,9 +93,9 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public void onResponse(Call<ListWrapper<User>> call, Response<ListWrapper<User>> response) {
             if (response.isSuccessful()) {
+                splashScreen.setVisibility(View.GONE);
                 ListWrapper<User> usersListWrapper = response.body();
                 displayUsers(usersListWrapper.getItems());
-                removeLoadingIcon();
             } else {
                 Log.d("UsersCallback", "Code: " + response.code() + " Message: " + response.message());
             }
@@ -94,10 +107,6 @@ public class MainActivity extends AppCompatActivity {
         }
     };
 
-    private void removeLoadingIcon() {
-        findViewById(R.id.loadingPanel).setVisibility(View.GONE);
-    }
-
     /**
      * Inflates the table row view and populates accordingly
      * @param users list of users
@@ -108,11 +117,7 @@ public class MainActivity extends AppCompatActivity {
             TableRow inflateRow = (TableRow) View.inflate(MainActivity.this, R.layout.table_row, null);
 
             // Update picture
-            ImageView profilePic = (ImageView) inflateRow.findViewById(R.id.profile_picture);
-            Glide.with(this)
-                    .load(user.getGravaterUrl())
-                    .apply(RequestOptions.circleCropTransform())
-                    .into(profilePic);
+            handleImageLoading(user, inflateRow);
 
             // Update username
             TextView textview = (TextView) inflateRow.findViewById(R.id.username_box);
@@ -129,6 +134,38 @@ public class MainActivity extends AppCompatActivity {
             // Attach to main table layout
             usersTableLayout.addView(inflateRow);
         }
+    }
+
+    /**
+     * Shows a loading animation while the image is getting ready
+     * Once the resource is ready, it will switch out the loading animation with the image
+     * @param user User to be displayed
+     * @param inflateRow Current row
+     */
+    private void handleImageLoading(User user, TableRow inflateRow) {
+        final ProgressBar progressBar = (ProgressBar) inflateRow.findViewById(R.id.progress_bar_profile_pic);
+        final ImageView profilePic = (ImageView) inflateRow.findViewById(R.id.profile_picture);
+
+        Glide.with(this)
+                .load(user.getGravaterUrl())
+                .listener(new RequestListener<Drawable>() {
+                    @Override
+                    public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Drawable> target, boolean isFirstResource) {
+                        return false;
+                    }
+
+                    @Override
+                    public boolean onResourceReady(Drawable resource, Object model, Target<Drawable> target, DataSource dataSource, boolean isFirstResource) {
+                        // Removes the loading animation once the image is ready
+                        if (!showLoading) {
+                            progressBar.setVisibility(View.GONE);
+                            profilePic.setVisibility(View.VISIBLE);
+                        }
+                        return false;
+                    }
+                })
+                .apply(RequestOptions.circleCropTransform())
+                .into(profilePic);
     }
 
 }

@@ -4,13 +4,19 @@
     android:layout_height="@dimen/row_height">
 
 
-    <!-- Gravatar -->
+    <!--&lt;!&ndash; Gravatar &ndash;&gt;-->
     <ImageView
+        android:visibility="gone"
         android:id="@+id/profile_picture"
         android:padding="@dimen/general_padding"
         android:layout_width="@dimen/image_square"
         android:layout_height="@dimen/image_square"
         />
+    <ProgressBar
+        android:visibility="visible"
+        android:id="@+id/progress_bar_profile_pic"
+        android:layout_width="@dimen/image_square"
+        android:layout_height="@dimen/image_square"/>
 
     <LinearLayout
         android:padding="@dimen/general_padding"
