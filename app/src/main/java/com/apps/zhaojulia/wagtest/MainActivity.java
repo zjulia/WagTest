@@ -55,6 +55,9 @@ public class MainActivity extends AppCompatActivity {
         stackoverflowAPI.getUsers().enqueue(usersCallback);
     }
 
+    /**
+     * Sets up api
+     */
     private void createStackOverflowAPI() {
         Gson gson = new GsonBuilder()
                 .setDateFormat("yyyy-MM-dd'T'HH:mm:ssZ")
@@ -69,6 +72,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+    /**
+     * Handles callback, the users are obtained in the list wrapper and then displayed
+     * using a helper method
+     */
     Callback<ListWrapper<User>> usersCallback = new Callback<ListWrapper<User>>() {
         @Override
         public void onResponse(Call<ListWrapper<User>> call, Response<ListWrapper<User>> response) {
